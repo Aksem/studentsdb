@@ -24,8 +24,6 @@ SECRET_KEY = '$lrm#z+qs)(&2rkr)tnui0m0%7r%)s!)9ni$#ug_vjmce+5x%!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -66,6 +64,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'studentsdb.context_processors.students_proc',
             ],
+        'TEMPLATE_DEBUG': True
         },
     },
 ]
