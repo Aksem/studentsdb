@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PORTAL_URL = 'http://localhost:8000'
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '$lrm#z+qs)(&2rkr)tnui0m0%7r%)s!)9ni$#ug_vjmce+5x%!'
@@ -64,7 +64,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'studentsdb.context_processors.students_proc',
             ],
-        'TEMPLATE_DEBUG': True
         },
     },
 ]
