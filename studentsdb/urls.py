@@ -22,6 +22,8 @@ urlpatterns = [
          name='groups_edit'),
     url(r'^groups/(?P<gid>\d+)/delete/$', students_views.groups_delete,
          name='groups_delete'),
+    # One-group url
+    url(r'^group/(?P<gid>\d+)/$', students_views.group_view),
 
     url(r'^admin/', admin.site.urls),
 ]

@@ -7,24 +7,28 @@
 {% block title %}База Студентів{% endblock title %}
 
 {% block content %}
-<div class="col-xs-4" id="group-selector">
-        <strong>Група:</strong>
-        <select>
-          <option value="">Усі Студенти</option>
-          <option value="">Мтм-21, Віталій Подоба</option>
-          <option value="">Мтм-22, Андрій Петров</option>
-          {{ groups }}
-          {% for group in groups %}
-          <option value="">{{ group.title }} Віталій Подоба</option>
-          {% endfor %}
-        </select>
-      </div>
+<!--<div class="col-xs-4" id="group-selector">
+  <form name="select_group" method="POST">{% csrf_token %}
+    <strong>Група:</strong>
+    <select name="group_id">
+      <option value="0">Усі cтуденти</option>
+      {% for group in groups %}
+      <option value="{{ group.id }}">{{ group.title }}, {{ group.leader }}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" value="Показати" />
+    </form>
+</div> //-->
 <a href="{% url "students_add" %}" class="btn btn-primary">Додати Студента</a>
+
+<div id="js-group-selector" class="col-md-4">
+    {{ group_selector.as_p }}
+</div>
 
 <!-- Start Students Listing -->
 <table class="table">
   {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
-  <thead>
+  <thead class="thead">
     <tr>
       <th><a href="#">#</a></th>
       <th>Фото</th>
@@ -51,7 +55,7 @@
     </tr>
   </thead>
   {% endwith %}
-  <tbody>
+  <tbody class="tbody">
     {% for student in students %}
     <tr>
       <td>{{ forloop.counter }}</td>
