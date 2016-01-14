@@ -47,9 +47,9 @@ class Student(models.Model):
         blank=False,
         null=True,
         on_delete=models.PROTECT)
-    def __unicode__(self):
-        return u"%s %s" % (self.first_name, self.last_name)
-
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+    
 class Group(models.Model):
     """Модель групи створена по типу моделі студента!"""
     class Meta(object):
@@ -71,8 +71,5 @@ class Group(models.Model):
     blank=True,
     verbose_name=u"Додаткові нотатки"
         )
-    def __unicode__(self):
-        if self.leader:
-            return u"%s (%s %s)" % (self.title, self.leader.first_name,self.leader.last_name)
-        else:
-            return u"%s" % (self.title,)
+    def __str__(self):
+        return self.title

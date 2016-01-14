@@ -8,6 +8,7 @@ from datetime import datetime
 
 def students_list(request):
     students = Student.objects.all()
+    groups = Group.objects.all()
     #try to order students list
     order_by = request.GET.get('order_by','')
     if order_by in ('last_name','first_name','ticket'):
