@@ -7,11 +7,11 @@ urlpatterns = [
     url(r'^$', students_views.students_list, name='home'),
     url(r'^students/add/$',  students_views.students_add,
          name='students_add'),
-    url(r'^students/(?P<sid>\d+)/edit/$',
-         students_views.students_edit,
+    url(r'^students/(?P<pk>\d+)/edit/$',
+         students_views.StudentUpdateView.as_view(),
          name='students_edit'),
-    url(r'^students/(?P<sid>\d+)/delete/$',
-         students_views.students_delete,
+    url(r'^students/(?P<pk>\d+)/delete/$',
+         students_views.StudentDeleteView.as_view(),
          name='students_delete'),
 
     # Groups urls

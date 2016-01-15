@@ -5,8 +5,8 @@ from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Student, Group
 from datetime import datetime
-from .forms import GroupSelector
-import json
+from .forms import GroupSelector, StudentUpdateForm
+from django.views.generic import UpdateView,DeleteView
 
 def students_list(request):
     students = Student.objects.all()
@@ -117,13 +117,7 @@ def students_add(request):
         #initial form render
         return render(request, 'students/students_add.html',
             {'groups':Group.objects.all().order_by('title')})
-
-def students_edit(request, sid):
-    return HttpResponse('<h1>Edit Student %s</h1>' % sid)
-
-def students_delete(request, sid):
-    return HttpResponse('<h1>Delete Student %s</h1>' % sid)
-
+    
 #Group views
 def groups_list(request):
     groups = Group.objects.all()
@@ -156,3 +150,26 @@ def groups_edit(request, gid):
 
 def groups_delete(request, gid):
     return HttpResponse('<h1>Delete Group %s</h1>' % gid)
+           
+class StudentUpdateView(UpdateView):
+    model = Student
+    template_name = 'students/students_edit.html'
+    form_class = StudentUpdateForm
+
+    def get_success_url(self):
+        return u'%s?status_message=Студента успішно збережено!' % reverse('home')
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('cancel_button'):
+            return HttpResponseRedirect(
+                u'%s?status_message=Редагування студента вімінено!'%
+                reverse('home'))
+        else:
+            return super(StudentsUpdateView, self).post(requset, *args, **kwargs)
+            
+class StudentDeleteView(DeleteView):
+    model = Student
+    template_name = 'students/students_confirm_delete.html'
+
+    def get_success_url(self):
+        return u'%s?status_message=Студента успішно видалено!' % reverse('home')

@@ -9,25 +9,18 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 from django.conf import global_settings
 from .db import DATABASES
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 PORTAL_URL = 'http://localhost:8000'
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '$lrm#z+qs)(&2rkr)tnui0m0%7r%)s!)9ni$#ug_vjmce+5x%!'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
-# Application definition
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -36,6 +29,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'students',
 )
 
@@ -70,12 +64,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'studentsdb.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-#WE MOVED DATABASE TO db.py
-# Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
-
 LANGUAGE_CODE = 'uk'
 
 TIME_ZONE = 'UTC'
@@ -86,12 +74,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
 STATIC_URL = '/static/'
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
